@@ -6,6 +6,7 @@ import mysql.connector
 
 def get_connection():
     return mysql.connector.connect(
+        host = 'localhost',
         user='test',
         password='password',
         database='cs122a'
@@ -143,7 +144,6 @@ def import_data(folder: str):
 
         cursor.execute("SET FOREIGN_KEY_CHECKS = 1;")
 
-        # Load order: parents before children
         table_files = [
             ("User",          "User.csv"),
             ("Organizer",     "Organizer.csv"),
@@ -180,7 +180,7 @@ def import_data(folder: str):
         print_bool(False)
 
 def main():
-    return print("hello world")
+    import_data('sample_data')
 
 if __name__ == '__main__':
     main()
