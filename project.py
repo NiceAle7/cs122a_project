@@ -375,9 +375,8 @@ def participant_schedule(uid):
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT e.eid, e.title, e.type, 
-                DATE_FORMAT(e.datetime, '%Y-%m-%d %H:%i:%s'),
-                s.snum, v.vid, v.street, v.city, v.state, v.zip
+            SELECT e.eid, e.title, e.type, e.datetime, s.snum,
+                   v.vid, v.street, v.city, v.state, v.zip
             FROM Slot s
             JOIN Event e ON e.eid = s.eid
             LEFT JOIN Hosting h ON h.eid = e.eid AND h.is_primary = 1
@@ -385,7 +384,7 @@ def participant_schedule(uid):
             WHERE s.uid = %s AND s.is_reserved = 1
             ORDER BY e.datetime ASC, e.eid ASC
             """,
-        (uid,)
+            (uid,)
         )
         rows = cursor.fetchall()
         cursor.close()
