@@ -25,7 +25,7 @@ def print_table(rows):
 def parse_null(v):
     """Treat the literal NULL (and empty string) as Python None."""
     if v is None or v == 'NULL' or v == '':
-        return None
+        return 'NULL'
     return v
 
 
