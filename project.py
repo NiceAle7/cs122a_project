@@ -19,13 +19,13 @@ def print_bool(success: bool):
 
 def print_table(rows):
     for row in rows:
-        print(','.join('' if v is None else str(v) for v in row))
+        print(','.join('NULL' if v is None else str(v) for v in row))
 
 
 def parse_null(v):
     """Treat the literal NULL (and empty string) as Python None."""
     if v is None or v == 'NULL' or v == '':
-        return 'NULL'
+        return None
     return v
 
 
